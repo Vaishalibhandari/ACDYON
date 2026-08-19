@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 12px;
+  }
+  body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+}
+
+/* Prevent accidental horizontal overflow */
+html, body, #root { overscroll-behavior-x: contain; }
+body { overflow-x: hidden; -webkit-font-smoothing:antialiased; }
+
+.fade-in { animation: fadeIn 500ms ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity:1; transform: translateY(0);} }
+
+/* Focus and accessible outlines */
+@layer utilities {
+  .focus-ring:focus{ outline: none; box-shadow: 0 0 0 4px rgba(124,58,237,0.12); border-radius: 8px; }
+  .focus-visible:focus-visible{ outline: none; box-shadow: 0 0 0 4px rgba(124,58,237,0.18); border-radius: 8px; }
+}
+
+/* Stagger utilities for product/dashboard cards */
+.stagger > * { opacity: 0; transform: translateY(8px); animation: staggerIn 420ms cubic-bezier(.2,.9,.2,1) forwards; }
+@keyframes staggerIn { to { opacity: 1; transform: translateY(0); } }
+
+/* Simple fade-up used for hero parts with variable delay */
+.fade-up { opacity: 0; transform: translateY(8px); animation: fadeUp 520ms cubic-bezier(.2,.9,.2,1) forwards; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+/* Mobile scale helpers */
+@media (max-width: 420px){
+  h1 { font-size: 1.625rem; }
+  .max-w-7xl { padding-left: 16px; padding-right:16px; }
+}
